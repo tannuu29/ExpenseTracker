@@ -1,0 +1,220 @@
+.home-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.landing-header {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  display: flex;
+  gap: 15px;
+  z-index: 100;
+}
+
+.login-btn,
+.signup-btn {
+  padding: 8px 20px;
+  font-size: 0.95rem;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.login-btn {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+}
+
+.login-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.8);
+  color: #ffffff;
+}
+
+.signup-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+}
+
+@media (max-width: 768px) {
+  .landing-header {
+    top: 15px;
+    right: 15px;
+    gap: 10px;
+  }
+
+  .login-btn,
+  .signup-btn {
+    padding: 6px 15px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-header {
+    top: 10px;
+    right: 10px;
+    gap: 8px;
+    flex-direction: column;
+  }
+
+  .login-btn,
+  .signup-btn {
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    width: 80px;
+  }
+}
+
+.home-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  max-width: 600px;
+  text-align: center;
+}
+
+.logo-section {
+  margin-bottom: 20px;
+}
+
+.home-logo {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  animation: fadeIn 1s ease-in;
+}
+
+.title-section {
+  margin-bottom: 10px;
+}
+
+.home-title {
+  color: #28a745;
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: slideInDown 0.8s ease-out;
+}
+
+.home-subtitle {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin: 10px 0 0 0;
+  opacity: 0.9;
+  animation: slideInDown 0.8s ease-out 0.2s both;
+}
+
+.description-section {
+  margin: 20px 0;
+  animation: fadeIn 1s ease-in 0.4s both;
+}
+
+.home-description {
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin: 0 0 15px 0;
+}
+
+.home-tagline {
+  color: #cccccc;
+  font-size: 1rem;
+  font-weight: 300;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.cta-section {
+  margin-top: 30px;
+  animation: fadeIn 1s ease-in 0.6s both;
+}
+
+.start-button {
+  width: 180px;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.start-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.5);
+}
+
+.start-button:active {
+  transform: translateY(0);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .home-title {
+    font-size: 2.5rem;
+  }
+
+  .home-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .home-description {
+    font-size: 1.1rem;
+  }
+
+  .home-logo {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-title {
+    font-size: 2rem;
+  }
+
+  .home-subtitle {
+    font-size: 1rem;
+  }
+
+  .home-description {
+    font-size: 1rem;
+  }
+
+  .start-button {
+    width: 150px;
+    font-size: 1rem;
+  }
+}
+
