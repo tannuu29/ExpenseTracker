@@ -1,4 +1,4 @@
-.home-container {
+.landing-container {
   position: relative;
   display: flex;
   justify-content: center;
@@ -7,9 +7,62 @@
   width: 100%;
   padding: 40px 20px;
   box-sizing: border-box;
+  background-color: var(--bg-tertiary);
+  transition: background-color 0.3s ease;
 }
 
-.landing-header {
+.theme-toggle-btn {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  background: var(--border-color);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 100;
+  color: var(--text-primary);
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.theme-toggle-btn:hover {
+  background: var(--border-color);
+  border-color: var(--border-color);
+  transform: scale(1.1) rotate(15deg);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+.theme-icon {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle-btn:hover .theme-icon {
+  transform: rotate(180deg);
+}
+
+[data-theme='light'] .theme-toggle-btn {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='light'] .theme-toggle-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.landing-header-buttons {
   position: absolute;
   top: 20px;
   right: 30px;
@@ -28,14 +81,14 @@
 
 .login-btn {
   background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  color: #ffffff;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
 }
 
 .login-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.8);
-  color: #ffffff;
+  background-color: var(--border-color);
+  border-color: var(--border-color);
+  color: var(--text-primary);
 }
 
 .signup-btn:hover {
@@ -43,8 +96,30 @@
   box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
 }
 
+[data-theme='light'] .login-btn {
+  border-color: rgba(0, 0, 0, 0.2);
+  color: var(--text-primary);
+}
+
+[data-theme='light'] .login-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
 @media (max-width: 768px) {
-  .landing-header {
+  .theme-toggle-btn {
+    top: 15px;
+    left: 15px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .theme-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .landing-header-buttons {
     top: 15px;
     right: 15px;
     gap: 10px;
@@ -58,7 +133,19 @@
 }
 
 @media (max-width: 480px) {
-  .landing-header {
+  .theme-toggle-btn {
+    top: 10px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .theme-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .landing-header-buttons {
     top: 10px;
     right: 10px;
     gap: 8px;
@@ -73,7 +160,7 @@
   }
 }
 
-.home-content {
+.landing-content {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -86,7 +173,7 @@
   margin-bottom: 20px;
 }
 
-.home-logo {
+.landing-logo {
   width: 150px;
   height: 150px;
   object-fit: contain;
@@ -97,22 +184,23 @@
   margin-bottom: 10px;
 }
 
-.home-title {
+.landing-title {
   color: #28a745;
   font-size: 3.5rem;
   font-weight: bold;
   margin: 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 4px var(--shadow-color);
   animation: slideInDown 0.8s ease-out;
 }
 
-.home-subtitle {
-  color: #ffffff;
+.landing-subtitle {
+  color: var(--text-primary);
   font-size: 1.5rem;
   font-weight: 300;
   margin: 10px 0 0 0;
   opacity: 0.9;
   animation: slideInDown 0.8s ease-out 0.2s both;
+  transition: color 0.3s ease;
 }
 
 .description-section {
@@ -120,19 +208,21 @@
   animation: fadeIn 1s ease-in 0.4s both;
 }
 
-.home-description {
-  color: #ffffff;
+.landing-description {
+  color: var(--text-primary);
   font-size: 1.3rem;
   font-weight: 400;
   margin: 0 0 15px 0;
+  transition: color 0.3s ease;
 }
 
-.home-tagline {
-  color: #cccccc;
+.landing-tagline {
+  color: var(--text-secondary);
   font-size: 1rem;
   font-weight: 300;
   margin: 0;
   opacity: 0.8;
+  transition: color 0.3s ease;
 }
 
 .cta-section {
@@ -181,34 +271,34 @@
 
 /* Responsive design */
 @media (max-width: 768px) {
-  .home-title {
+  .landing-title {
     font-size: 2.5rem;
   }
 
-  .home-subtitle {
+  .landing-subtitle {
     font-size: 1.2rem;
   }
 
-  .home-description {
+  .landing-description {
     font-size: 1.1rem;
   }
 
-  .home-logo {
+  .landing-logo {
     width: 120px;
     height: 120px;
   }
 }
 
 @media (max-width: 480px) {
-  .home-title {
+  .landing-title {
     font-size: 2rem;
   }
 
-  .home-subtitle {
+  .landing-subtitle {
     font-size: 1rem;
   }
 
-  .home-description {
+  .landing-description {
     font-size: 1rem;
   }
 
