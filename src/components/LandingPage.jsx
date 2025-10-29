@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import photo from '../assets/expense_logo.png'
 import './LandingPage.css'
+import Login from './Login'
+import SignUp from './SignUp'
 
 export default function LandingPage() {
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem('theme') || 'dark'
     return savedTheme
   })
+  const [showLogin, setShowLogin] = useState(false)
+  const [showSignUp, setShowSignUp] = useState(false)
 
   useEffect(() => {
     // Apply theme on mount and when theme changes
@@ -26,6 +30,31 @@ export default function LandingPage() {
 
   const toggleTheme = () => {
     setTheme(prevTheme => prevTheme === 'dark' ? 'light' : 'dark')
+  }
+
+  const handleLoginClick = () => {
+    setShowLogin(true)
+    setShowSignUp(false)
+  }
+
+  const handleSignUpClick = () => {
+    setShowSignUp(true)
+    setShowLogin(false)
+  }
+
+  const handleCloseAuth = () => {
+    setShowLogin(false)
+    setShowSignUp(false)
+  }
+
+  const switchToSignUp = () => {
+    setShowLogin(false)
+    setShowSignUp(true)
+  }
+
+  const switchToLogin = () => {
+    setShowSignUp(false)
+    setShowLogin(true)
   }
 
   return (
@@ -55,8 +84,8 @@ export default function LandingPage() {
         )}
       </button>
       <div className="landing-header-buttons">
-        <button type="button" className="btn btn-outline-light login-btn">Login</button>
-        <button type="button" className="btn btn-success signup-btn">Sign Up</button>
+        <button type="button" className="btn btn-outline-light login-btn" onClick={handleLoginClick}>Login</button>
+        <button type="button" className="btn btn-success signup-btn" onClick={handleSignUpClick}>Sign Up</button>
       </div>
       <div className="landing-content">
         <div className="logo-section">
@@ -76,6 +105,8 @@ export default function LandingPage() {
           </button>
         </div>
       </div>
+      {showLogin && <Login onClose={handleCloseAuth} onSwitchToSignUp={switchToSignUp} />}
+      {showSignUp && <SignUp onClose={handleCloseAuth} onSwitchToLogin={switchToLogin} />}
     </div>
   )
 }
