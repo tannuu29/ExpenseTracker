@@ -1,16 +1,20 @@
 import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import LandingPage from './components/LandingPage'
-import Header from './components/Header'
-import Dashboard from './/components/Dashboard'
+import Dashboard from './components/Dashboard'
+import About from './components/About'
+import ContactUs from './components/ContactUs'
 
 function App() {
-
   return (
-    <div className="landing-page">
-      {/* <LandingPage/> */}
-      {/* <Header/> */}
-      <Dashboard/>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<ContactUs />} />
+      </Routes>
+    </Router>
   )
 }
 

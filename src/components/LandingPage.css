@@ -238,6 +238,9 @@
   border-radius: 30px;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
 }
 
 .start-button:hover {

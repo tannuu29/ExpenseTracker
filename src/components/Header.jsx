@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import logo from '../assets/expense_logo.png'
 import './Header.css'
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const location = useLocation()
+    const navigate = useNavigate()
     const [theme, setTheme] = useState(() => {
         const savedTheme = localStorage.getItem('theme') || 'dark'
         return savedTheme
@@ -38,6 +41,11 @@ export default function Header() {
         }
     }, [isMenuOpen])
 
+    // Close menu on navigation
+    useEffect(() => {
+        setIsMenuOpen(false)
+    }, [location.pathname])
+
     const toggleTheme = () => {
         setTheme(prevTheme => prevTheme === 'dark' ? 'light' : 'dark')
         setIsMenuOpen(false)
@@ -47,6 +55,7 @@ export default function Header() {
         // Add logout logic here
         console.log('Logout clicked')
         setIsMenuOpen(false)
+        navigate('/')
     }
 
     const handleProfile = () => {
@@ -59,10 +68,10 @@ export default function Header() {
         <header className="custom-header">
             <nav className="navbar navbar-expand-lg">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="#">
+                    <Link className="navbar-brand" to="/">
                         <img src={logo} alt="MoneyMap Logo" className="header-logo" />
                         <span className="brand-text">MoneyMap</span>
-                    </a>
+                    </Link>
 
                     <button 
                         className="navbar-toggler" 
@@ -78,18 +87,15 @@ export default function Header() {
                     
                     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div className="navbar-nav">
-                            <a className="nav-link active" href="#">
+                            <NavLink className="nav-link" to="/dashboard">
                                 Dashboard
-                            </a>
-                            <a className="nav-link" href="#">
-                                Features
-                            </a>
-                            <a className="nav-link" href="#">
-                                Support
-                            </a>
-                            <a className="nav-link" href="#">
-                                Pricing
-                            </a>
+                            </NavLink>
+                            <NavLink className="nav-link" to="/about">
+                                About
+                            </NavLink>
+                            <NavLink className="nav-link" to="/contact">
+                                Contact
+                            </NavLink>
                         </div>
                     </div>
                     

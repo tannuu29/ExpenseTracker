@@ -100,7 +100,11 @@ export default function LandingPage() {
           <p className="landing-tagline">Take control of your finances and track every expense effortlessly</p>
         </div>
         <div className="cta-section">
-          <button type="button" className="btn btn-success btn-lg start-button">
+          <button 
+            type="button" 
+            className="btn btn-success btn-lg start-button" 
+            onClick={handleLoginClick}
+          >
             Let's Start
           </button>
         </div>
